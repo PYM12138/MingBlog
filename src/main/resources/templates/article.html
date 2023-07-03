@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th=http://www.thymeleaf.org
+>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <link href="css/bootstrap.min.css" rel="stylesheet" th:href="@{/font-awesome-4.7.0/css/font-awesome.min.css}">
+    <title>文章页面</title>
+    <style>
+
+        @font-face {
+            font-family: 'al-RegularL3';
+            src: url(../fonts/AlibabaPuHuiTi-3-55-RegularL3.woff2);
+        }
+
+        @font-face {
+            font-family: 'al-Regular';
+            src: url(../fonts/AlibabaPuHuiTi-3-55-Regular.woff2);
+        }
+
+        @font-face {
+            font-family: 'al-Thin';
+            src: url(../fonts/AlibabaPuHuiTi-3-35-Thin.woff2);
+        }
+
+        @font-face {
+            font-family: 'al-Light';
+            src: url(../fonts/AlibabaPuHuiTi-3-45-Light.woff2);
+        }
+
+        @font-face {
+            font-family: 'al-SemiBold';
+            src: url(../fonts/AlibabaPuHuiTi-3-75-SemiBold.woff2);
+        }
+
+        body {
+            font-family: al-Regular;
+            font-size: 17px;
+        }
+
+        .nav-link {
+            position: relative;
+            padding-bottom: 5px;
+        }
+
+        .nav-link::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 2px;
+            background-color: gray;
+            transform: scaleX(0);
+            transition: transform 0.2s ease-in-out;
+        }
+
+        .nav-link:hover::after {
+            transform: scaleX(1);
+        }
+
+        .nav-link.active::after {
+            transform: scaleX(1);
+        }
+
+        #article_content p {
+            font-family: al-RegularL3;
+
+        }
+
+        .blockquote {
+            background-color: #f8f9fa;
+            border-left: 5px solid #dee2e6;
+            padding: 10px 20px;
+            width: 300px;
+            height: 100px;
+        }
+
+        .blockquote-footer {
+            background-color: #f8f9fa;
+            border-top: 1px solid #dee2e6;
+            padding: 5px 20px;
+        }
+
+        #float_card p {
+            /*font-family: al-RegularL3;*/
+            font-size: 15px;
+        }
+
+        #float_card span {
+            font-family: al-Light;
+            font-size: 15px;
+        }
+
+
+    </style>
+</head>
+<body>
+
+<!--导航条-->
+<nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm fixed-top">
+    <a class="navbar-brand" href="#">一纸鸳语</a>
+    <div class="d-block d-lg-none offset-4 offset-sm-6 offset-md-7"><img th:src="@{/img/test2.jpg}" width="50px"
+                                                                         height="50px"
+                                                                         class="rounded float-left img-thumbnail mr-2 "
+                                                                         alt="..."></div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse " id="navbarSupportedContent">
+        <ul class="offset-xl-4  offset-lg-2 navbar-nav mr-auto  ">
+
+            <li class="nav-item mr-2">
+
+                <a class="nav-link  active " href="#"><i class="fa fa-home mr-1" aria-hidden="true"></i>主页</a>
+            </li>
+            <li class="nav-item mr-2">
+                <a class="nav-link" href="#"><i class="fa fa-archive mr-1"></i>归档</a>
+            </li>
+            <li class="nav-item mr-2">
+                <a class="nav-link" href="#"><i class="fa fa-book mr-1" aria-hidden="true"></i>学习</a>
+            </li>
+            <li class="nav-item mr-2">
+                <a class="nav-link" href="#"><i class="fa fa-gamepad mr-1 " aria-hidden="true"></i>游戏</a>
+            </li>
+            <li class="nav-item mr-2">
+                <a class="nav-link" href="#"><i class="fa fa-check-circle mr-1" aria-hidden="true"></i>更新</a>
+            </li>
+            <li class="nav-item mr-2">
+                <a class="nav-link" href="#"><i class="fa fa-address-card mr-1" aria-hidden="true"></i>关于我</a>
+            </li>
+
+        </ul>
+        <button type="button" class="btn btn-primary" style="font-family: al-Light;"><i class="fa fa-sign-in mr-1 "
+                                                                                        aria-hidden="true"></i><span>登录/注册</span>
+        </button>
+    </div>
+</nav>
+
+<!--文章内容-->
+<div class="container pt-5">
+    <div class="row">
+
+        <!--开头配图-->
+        <div class="col-10 offset-1 mt-3 text-center">
+            <!--<img src="" alt="" th:src="@{/img/test.jpg}"  data-toggle="tooltip" title="绿色的光在你头上更绿了。"   class="img-fluid img-thumbnail">-->
+        </div>
+        <div class="col-12 mt-3 text-center">
+            <div class="fixed-top mt-5 d-none d-lg-block offset-10 ">
+                <div id="float_card" class="card mt-5 mr-3 mr-xl-3  shadow ">
+                    <div class="card-body  text-left ">
+                        <!--                        TODO 文章阅读目录未完成-->
+                        <h5 class="card-title">目录</h5>
+                        <span class="" style="font-size: 14px;">（本文共1200字，阅读需要12分钟，需要些许耐心哦~）</span>
+                        <p class="card-text">1.what do you do?</p>
+                        <p class="card-text">2.what do you mean?</p>
+                        <p class="card-text">3.How dare you!</p>
+                    </div>
+                </div>
+            </div>
+            <!--文章标题-->
+            <div id="article_title" class="">
+                <h3>SpringBoot的初步使用</h3>
+                <div id="" class="mb-2 pt-2 pb-2">
+                    <div class="badge badge-info font-weight-light mr-2">原创</div>
+                    <div class="badge font-weight-light text-secondary mr-2"><i class="fa fa-calendar-minus-o mr-1 "
+                                                                                aria-hidden="true"></i>2023-6-10
+                    </div>
+                    <div class="badge font-weight-light text-secondary"><i class="fa fa-folder-open-o mr-1 "
+                                                                           aria-hidden="true"></i> 我的故事
+                    </div>
+                </div>
+            </div>
+            <!--文章内容-->
+            <div id="article_content" class="col-10 offset-1">
+                <p class="text-left">
+                    欢迎来到我的博客，博客建站于2023/6/8，欢迎来到我的博客，博客建站于2023/6/8，欢迎来到我的博客，
+                    博客建站于2023/6/8，欢迎来到我的博客，博客建站于2023/6/8，欢迎来到我的博客，博客建站于2023/6/8，欢迎来到我的博客，博客建站于2023/6/8，欢迎来到我的博客，博客建站于2023/6/8，欢迎来到我的博客，博客建站于2023/6/8，构想于2020/9/1，便秘三年，终有分娩，欢迎来到我的博客，博客建站于2023/6/8，
+                    构想于2020/9/1，便秘三年，终有分娩，欢迎来到我的博客，博客建站于2023/6/8，
+                    构想于2020/9/1，便秘三年，终有分娩， 欢迎来到我的博客，博客建站于2023/6/8，
+                    构想于2020/9/1，便秘三年，终有分娩，终于在今天成功建站，举国欢庆，妈的我连字都不会打了。。。
+                    欢迎来到我的博客，博客建站于2023/6/8，欢迎来到我的博客，博客建站于2023/6/8，欢迎来到我的博客，
+                    博客建站于2023/6/8，欢迎来到我的博客，博客建站于2023/6/8，欢迎来到我的博客，博客建站于2023/6/8，欢迎来到我的博客，博客建站于2023/6/8，欢迎来到我的博客，博客建站于2023/6/8，欢迎来到我的博客，博客建站于2023/6/8，构想于2020/9/1，便秘三年，终有分娩，欢迎来到我的博客，博客建站于2023/6/8，
+                    构想于2020/9/1，便秘三年，终有分娩，欢迎来到我的博客，博客建站于2023/6/8，
+                    构想于2020/9/1，便秘三年，终有分娩， 欢迎来到我的博客，博客建站于2023/6/8，
+                    构想于2020/9/1，便秘三年，终有分娩，终于在今天成功建站，举国欢庆，妈的我连字都不会打了。。。
+                    欢迎来到我的博客，博客建站于2023/6/8，欢迎来到我的博客，博客建站于2023/6/8，欢迎来到我的博客，
+                    博客建站于2023/6/8，欢迎来到我的博客，博客建站于2023/6/8，欢迎来到我的博客，博客建站于2023/6/8，欢迎来到我的博客，博客建站于2023/6/8，欢迎来到我的博客，博客建站于2023/6/8，欢迎来到我的博客，博客建站于2023/6/8，构想于2020/9/1，便秘三年，终有分娩，欢迎来到我的博客，博客建站于2023/6/8，
+                    构想于2020/9/1，便秘三年，终有分娩，欢迎来到我的博客，博客建站于2023/6/8，
+                    构想于2020/9/1，便秘三年，终有分娩， 欢迎来到我的博客，博客建站于2023/6/8，
+                    构想于2020/9/1，便秘三年，终有分娩，终于在今天成功建站，举国欢庆，妈的我连字都不会打了。。。
+                    欢迎来到我的博客，博客建站于2023/6/8，欢迎来到我的博客，博客建站于2023/6/8，欢迎来到我的博客，
+                    博客建站于2023/6/8，欢迎来到我的博客，博客建站于2023/6/8，欢迎来到我的博客，博客建站于2023/6/8，欢迎来到我的博客，博客建站于2023/6/8，欢迎来到我的博客，博客建站于2023/6/8，欢迎来到我的博客，博客建站于2023/6/8，构想于2020/9/1，便秘三年，终有分娩，欢迎来到我的博客，博客建站于2023/6/8，
+                    构想于2020/9/1，便秘三年，终有分娩，欢迎来到我的博客，博客建站于2023/6/8，
+                    构想于2020/9/1，便秘三年，终有分娩， 欢迎来到我的博客，博客建站于2023/6/8，
+                    构想于2020/9/1，便秘三年，终有分娩，终于在今天成功建站，举国欢庆，妈的我连字都不会打了。。。
+                    欢迎来到我的博客，博客建站于2023/6/8，欢迎来到我的博客，博客建站于2023/6/8，欢迎来到我的博客，
+                    博客建站于2023/6/8，欢迎来到我的博客，博客建站于2023/6/8，欢迎来到我的博客，博客建站于2023/6/8，欢迎来到我的博客，博客建站于2023/6/8，欢迎来到我的博客，博客建站于2023/6/8，欢迎来到我的博客，博客建站于2023/6/8，构想于2020/9/1，便秘三年，终有分娩，欢迎来到我的博客，博客建站于2023/6/8，
+                    构想于2020/9/1，便秘三年，终有分娩，欢迎来到我的博客，博客建站于2023/6/8，
+                    构想于2020/9/1，便秘三年，终有分娩， 欢迎来到我的博客，博客建站于2023/6/8，
+                    构想于2020/9/1，便秘三年，终有分娩，终于在今天成功建站，举国欢庆，妈的我连字都不会打了。。。
+                    欢迎来到我的博客，博客建站于2023/6/8，欢迎来到我的博客，博客建站于2023/6/8，欢迎来到我的博客，
+                    博客建站于2023/6/8，欢迎来到我的博客，博客建站于2023/6/8，欢迎来到我的博客，博客建站于2023/6/8，欢迎来到我的博客，博客建站于2023/6/8，欢迎来到我的博客，博客建站于2023/6/8，欢迎来到我的博客，博客建站于2023/6/8，构想于2020/9/1，便秘三年，终有分娩，欢迎来到我的博客，博客建站于2023/6/8，
+                    构想于2020/9/1，便秘三年，终有分娩，欢迎来到我的博客，博客建站于2023/6/8，
+                    构想于2020/9/1，便秘三年，终有分娩， 欢迎来到我的博客，博客建站于2023/6/8，
+                    构想于2020/9/1，便秘三年，终有分娩，终于在今天成功建站，举国欢庆，妈的我连字都不会打了。。。
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+</div>
+
+
+</body>
+<script src="js/jquery-3.3.1.js" th:src="@{/js/jquery-3.5.1.min.js}"></script>
+<script src="js/jquery-3.3.1.js" th:src="@{/js/bootstrap.bundle.min.js}"></script>
+<script>
+    $('.navbar-nav>li>a').on('click', function () {
+        $('.navbar-collapse').collapse('hide');
+    });
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    })
+
+</script>
+</html>

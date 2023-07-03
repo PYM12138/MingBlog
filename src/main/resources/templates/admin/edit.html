@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th=http://www.thymeleaf.org
+>
+<head>
+    <meta charset="UTF-8">
+    <title>网站管理</title>
+
+    <link rel="stylesheet" th:href="@{/adminLTE/dist/css/adminlte.min.css}">
+    <link href="css/bootstrap.min.css" rel="stylesheet" th:href="@{/font-awesome-4.7.0/css/font-awesome.min.css}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" th:href="@{/editormd/css/editormd.min.css}">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.1.2/css/tempusdominus-bootstrap-4.min.css">
+
+
+    <style>
+        @font-face {
+            font-family: 'al-RegularL3';
+            src: url(../fonts/AlibabaPuHuiTi-3-55-RegularL3.woff2);
+        }
+
+        @font-face {
+            font-family: 'al-Regular';
+            src: url(../fonts/AlibabaPuHuiTi-3-55-Regular.woff2);
+        }
+
+        @font-face {
+            font-family: 'al-Thin';
+            src: url(../fonts/AlibabaPuHuiTi-3-35-Thin.woff2);
+        }
+
+        @font-face {
+            font-family: 'al-Light';
+            src: url(../fonts/AlibabaPuHuiTi-3-45-Light.woff2);
+        }
+
+        @font-face {
+            font-family: 'al-SemiBold';
+            src: url(../fonts/AlibabaPuHuiTi-3-75-SemiBold.woff2);
+        }
+
+        body {
+            font-family: al-RegularL3;
+            font-size: 15px;
+        }
+
+        .nav-treeview p {
+            font-size: 14px;
+        }
+
+
+    </style>
+</head>
+<!--<body class="sidebar-mini sidebar-collapse"> 侧边导航缩小-->
+<body style="height: auto">
+<div class="wrapper">
+    <!-- Navbar 顶部导航-->
+    <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fa fa-bars"></i></a>
+            </li>
+            <li class="nav-item d-none d-sm-inline-block">
+                <a href="../../index3.html" class="nav-link">Home</a>
+            </li>
+            <li class="nav-item d-none d-sm-inline-block">
+                <a href="#" class="nav-link">Contact</a>
+            </li>
+        </ul>
+
+        <ul class="navbar-nav ml-auto">
+
+            <li class="nav-item">
+                <a class="nav-link" data-widget="navbar-search" data-target="#navbar-search2" href="#" role="button">
+                    <i class="fa fa-search"></i>
+                </a>
+                <div class="navbar-search-block" id="navbar-search2" style="display: none;">
+                    <form class="form-inline">
+                        <div class="input-group input-group-sm">
+                            <input class="form-control form-control-navbar" type="search" placeholder="Search"
+                                   aria-label="Search">
+                            <div class="input-group-append">
+                                <button class="btn btn-navbar" type="submit">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                                <button class="btn btn-navbar" type="button" data-widget="navbar-search">
+                                    <i class="fa fa-times"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </li>
+
+            <li class="nav-item dropdown">
+                <a class="nav-link" data-toggle="dropdown" href="#">
+                    <i class="fa fa-thumbs-up" aria-hidden="true"></i>
+                    <span class="badge badge-danger navbar-badge">3</span>
+                </a>
+                <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                    <a href="#" class="dropdown-item">
+
+                        <div class="media">
+                            <img src="" alt="User Avatar" class="img-size-50 mr-3 img-circle">
+                            <div class="media-body">
+                                <h3 class="dropdown-item-title">
+                                    Brad Diesel
+                                    <span class="float-right text-sm text-danger"><i class="fa fa-star"></i></span>
+                                </h3>
+                                <p class="text-sm">Call me whenever you can
+                                </p>
+                                <p class="text-sm text-muted"><i class="fa fa-clock mr-1"></i> 4 Hours Ago</p>
+                            </div>
+                        </div>
+
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a href="#" class="dropdown-item">
+
+                        <div class="media">
+                            <img src="" alt="User Avatar" class="img-size-50 img-circle mr-3">
+                            <div class="media-body">
+                                <h3 class="dropdown-item-title">
+                                    John Pierce
+                                    <span class="float-right text-sm text-muted"><i class="fa fa-star"></i></span>
+                                </h3>
+                                <p class="text-sm">I got your message bro</p>
+                                <p class="text-sm text-muted"><i class="fa fa-clock mr-1"></i> 4 Hours Ago</p>
+                            </div>
+                        </div>
+
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a href="#" class="dropdown-item">
+
+                        <div class="media">
+                            <img src="" alt="User Avatar" class="img-size-50 img-circle mr-3">
+                            <div class="media-body">
+                                <h3 class="dropdown-item-title">
+                                    Nora Silvester
+                                    <span class="float-right text-sm text-warning"><i class="fa fa-star"></i></span>
+                                </h3>
+                                <p class="text-sm">The subject goes here</p>
+                                <p class="text-sm text-muted"><i class="fa fa-clock mr-1"></i> 4 Hours Ago</p>
+                            </div>
+                        </div>
+
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a href="#" class="dropdown-item dropdown-footer">See All Messages</a>
+                </div>
+            </li>
+
+            <li class="nav-item dropdown">
+                <a class="nav-link" data-toggle="dropdown" href="#">
+                    <i class="fa fa-bell"></i>
+                    <span class="badge badge-warning navbar-badge">15</span>
+                </a>
+                <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                    <span class="dropdown-item dropdown-header">15 Notifications</span>
+                    <div class="dropdown-divider"></div>
+                    <a href="#" class="dropdown-item">
+                        <i class="fa fa-envelope mr-2"></i> 4 new messages
+                        <span class="float-right text-muted text-sm">3 mins</span>
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a href="#" class="dropdown-item">
+                        <i class="fa fa-users mr-2"></i> 8 friend requests
+                        <span class="float-right text-muted text-sm">12 hours</span>
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a href="#" class="dropdown-item">
+                        <i class="fa fa-file mr-2"></i> 3 new reports
+                        <span class="float-right text-muted text-sm">2 days</span>
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-widget="fullscreen" href="#" role="button">
+                    <i class="fa fa-expand-arrows-alt"></i>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
+                    <i class="fa fa-th-large"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Main Sidebar Container 侧边导航-->
+    <aside class="main-sidebar sidebar-light-info elevation-3 ">
+        <!-- Brand Logo -->
+        <a href="#" class="brand-link">
+            <!--<img th:src="@{/adminLTE/dist/img/AdminLTELogo.png}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+                 style="opacity: .8">-->
+            <span class="brand-text font-weight-light">一纸鸳语</span>
+        </a>
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <!-- Sidebar user panel (optional) -->
+            <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+                <div class="image">
+                    <img th:src="@{/adminLTE/img/user2-160x160.jpg}" class="img-circle elevation-2" alt="User Image">
+                </div>
+                <div class="info">
+                    <a href="#" class="d-block">欢迎回来，管理大大！</a>
+                </div>
+            </div>
+
+            <!-- Sidebar Menu -->
+            <nav class="mt-2">
+                <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu">
+                    <!-- Add icons to the links using the .nav-icon class
+                         with font-awesome or any other icon font library -->
+                    <li class="nav-item">
+                        <a href="#" class="nav-link active">
+                            <i class=" fa fa-bar-chart mr-1 " aria-hidden="true"></i>
+                            <p>
+                                数据统计
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item menu-close">
+                        <a href="#" class="nav-link ">
+                            <i class=" fa fa-file-code-o mr-1" aria-hidden="true"></i>
+                            <p>
+                                文章管理
+                                <i class="right fa fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview ">
+                            <li class="nav-item">
+                                <a href="#" class="nav-link active">
+                                    <i class=" fa fa-circle-o nav-icon"></i>
+                                    <p>发表文章</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    <i class="fa fa-circle-o nav-icon"></i>
+                                    <p>管理文章</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    <i class="fa fa-circle-o nav-icon"></i>
+                                    <p>文章操作记录</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item menu-close">
+                        <a href="#" class="nav-link ">
+                            <i class="fa fa-user-o mr-1" aria-hidden="true"></i>
+                            <p>
+                                用户信息
+                                <i class="right fa fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview ">
+                            <li class="nav-item">
+                                <a href="#" class="nav-link active">
+                                    <i class="fa fa-circle-o nav-icon"></i>
+                                    <p>用户管理</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    <i class="fa fa-circle-o nav-icon"></i>
+                                    <p>用户操作记录</p>
+                                </a>
+                            </li>
+
+                        </ul>
+                    </li>
+                    <li class="nav-item menu-close">
+                        <a href="#" class="nav-link ">
+                            <i class="fa fa-commenting-o mr-1" aria-hidden="true"></i>
+                            <p>
+                                评论管理
+                                <i class="right fa fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview ">
+                            <li class="nav-item">
+                                <a href="#" class="nav-link active">
+                                    <i class="fa fa-circle-o nav-icon"></i>
+                                    <p>新增评论</p>
+                                    <span class="right badge badge-danger">New</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    <i class="fa fa-circle-o nav-icon"></i>
+                                    <p>历史评论</p>
+                                </a>
+                            </li>
+
+                        </ul>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="fa fa-server mr-1" aria-hidden="true"></i>
+                            <p>
+                                网站日志
+                            </p>
+                        </a>
+                    </li>
+
+                </ul>
+            </nav>
+            <!-- /.sidebar-menu -->
+        </div>
+        <!-- /.sidebar -->
+    </aside>
+    <!--页面主体内容-->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1><i class=" fa fa-file-code-o mr-2" aria-hidden="true"></i>文章管理</h1>
+                    </div>
+                    <div class=" col-sm-6">
+                        <ol class="breadcrumb  float-sm-right">
+                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            <li class="breadcrumb-item active">文章管理</li>
+                            <li class="breadcrumb-item active">发表文章</li>
+                        </ol>
+                    </div>
+                </div>
+            </div><!-- /.container-fluid -->
+        </section>
+        <!-- Main content -->
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-3">
+                        <div class="card  card-primary " style="height: 730px">
+                            <div class="card-header text-center">
+                                <h5 class="mb-0">
+                                    <i class="fa fa-info" aria-hidden="true"></i>
+                                    文章基本信息
+                                </h5>
+                            </div>
+                            <div class="card-body">
+                                <div id="editArticle_title">
+                                    <div class="form-group">
+                                        <label>
+                                            文章ID
+                                            <i class="fa fa-key text-danger" aria-hidden="true"></i>
+                                        </label>
+                                        <input type="text" class="form-control" placeholder="">
+                                    </div>
+                                    <!--<div class="form-group">
+                                        <label>标题</label>
+                                        <input type="text" class="form-control" placeholder="标题在100个字以内">
+                                    </div>-->
+                                    <div class="form-group">
+                                        <label for="exampleInputBorderWidth2">标题</label>
+                                        <input type="text" class="form-control form-control-border border-width-2"
+                                               id="exampleInputBorderWidth2" placeholder="标题在100个字以内">
+                                    </div>
+                                </div>
+                                <div id="editArticle_contentOverview">
+                                    <div class="form-group">
+                                        <label>内容梗概</label>
+                                        <textarea class="form-control" rows="3" style="min-height: 100px"
+                                                  placeholder="Enter ..."></textarea>
+                                    </div>
+                                </div>
+                                <div id="editArticle_type">
+                                    <label>类型</label>
+                                    <div class="row form-group">
+                                        <div class="custom-control custom-radio ml-2">
+                                            <input class="custom-control-input" type="radio" id="customRadio2"
+                                                   name="customRadio" checked="">
+                                            <label for="customRadio2"
+                                                   class="custom-control-label badge badge-btn badge-info ">原创</label>
+                                        </div>
+                                        <div class="custom-control custom-radio ml-2">
+                                            <input class="custom-control-input" type="radio" id="customRadio3"
+                                                   name="customRadio" checked="">
+                                            <label for="customRadio3"
+                                                   class="custom-control-label badge badge-btn badge-danger">转载</label>
+                                        </div>
+                                        <div class="custom-control custom-radio ml-2">
+                                            <input class="custom-control-input" type="radio" id="customRadio4"
+                                                   name="customRadio" checked="">
+                                            <label for="customRadio4"
+                                                   class="custom-control-label badge badge-btn badge-success">分享</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="editArticle_category">
+                                    <div class="form-group">
+                                        <label>分类</label>
+                                        <select class="form-control">
+                                            <option>我的故事</option>
+                                            <option>option 2</option>
+                                            <option>option 3</option>
+                                            <option>option 4</option>
+                                            <option>option 5</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div id="editArticle_tag">
+                                    <div class="form-group">
+                                        <label>标签</label>
+                                        <input type="text" class="form-control" placeholder="标签之间用逗号隔开">
+                                    </div>
+                                </div>
+                                <div id="editArticle_time">
+
+                                    <div class="form-group">
+                                        <label for="datepicker">选择日期:</label>
+                                        <div class="input-group date" id="datepicker" data-target-input="nearest">
+                                            <input type="text" class="form-control datetimepicker-input"
+                                                   data-target="#datepicker"/>
+                                            <div class="input-group-append" data-target="#datepicker"
+                                                 data-toggle="datetimepicker">
+                                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                            <div class="card-footer"></div>
+
+                        </div>
+                    </div>
+                    <div class="col-9">
+                        <div class="card card-outline card-primary">
+                            <div class="card-header text-center border-bottom-0">
+                                <h5 class="mb-0">
+                                    文章内容编辑
+                                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                </h5>
+
+                            </div>
+                            <div class="card-body pt-0 pb-0 pl-0 pr-0">
+                                <!--MarkDown的id标志 -->
+                                <div id="my-editormd">
+                                    <!-- 书写与实时显示的textarea -->
+                                    <textarea id="my-editormd-markdown-doc" name="my-editormd-markdown-doc"
+                                              style="display:none;"></textarea>
+                                </div>
+                            </div>
+
+                            <div class="card-footer col-12 ">
+                                <div class="float-right">
+                                    <button type="button" class="btn btn-danger">提交</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+
+            </div>
+
+
+        </section>
+    </div>
+</div>
+
+</body>
+<script src="js/jquery-3.3.1.js" th:src="@{/js/jquery-3.5.1.min.js}"></script>
+<script th:src="@{/adminLTE/plugins/jquery-ui/jquery-ui.min.js}"></script>
+<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+<script>
+    $.widget.bridge('uibutton', $.ui.button)
+</script>
+<script src="js/jquery-3.3.1.js" th:src="@{/js/bootstrap.bundle.min.js}"></script>
+
+<script th:src="@{/adminLTE/plugins/fastclick/fastclick.js}"></script>
+<script th:src="@{/adminLTE/plugins/moment/moment.min.js}"></script>
+<script th:src="@{/editormd/editormd.min.js}"></script>
+<script th:src="@{/adminLTE/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js}"></script>
+
+<script th:src="@{/adminLTE/dist/js/adminlte.min.js}"></script>
+
+
+<script>
+    $(function () {
+        editorMd_init();
+        tempus_init();
+
+
+    });
+
+    function tempus_init() {
+        $('#datepicker').datetimepicker({
+            format: 'YYYY-MM-DD HH:mm'
+        });
+    }
+
+
+    function editorMd_init() {
+        testEditor = editormd("my-editormd", { //注意1：这里的就是上面的DIV的id属性值
+            width: "100%",
+            height: 600,
+            syncScrolling: true, //设置双向滚动
+            path: "../../../editormd/lib/", //lib目录的路径
+            previewTheme: "white", //代码块使用dark主题
+            codeFold: true,
+            emoji: true,
+            tocm: true, // Using [TOCM]
+            tex: true, // 开启科学公式TeX语言支持，默认关闭
+            flowChart: true, // 开启流程图支持，默认关闭
+            sequenceDiagram: true, // 开启时序/序列图支持，默认关闭,
+            htmlDecode: true, //不过滤标签
+            imageUpload: true, //上传图片
+            imageFormats: ["jpg", "jpeg", "gif", "png", "bmp", "webp", "JPG", "JPEG", "GIF", "PNG", "BMP", "WEBP"],
+            imageUploadURL: "/uploadImage",
+            saveHTMLToTextarea: true, //注意3：这个配置，方便post提交表单
+            onload: function () {
+                // console.log('onload', this);
+            },
+            toolbarIcons: function () {
+                return ["bold", "del", "italic", "quote", "|", "h1", "h2", "h3", "h4", "h5", "h6", "|", "list-ul", "list-ol", "hr", "|", "link", "image", "code", "code-block", "table", "datetime", "html-entities", "emoji", "|", "watch", "preview", "fullscreen", "clear", "search", "|", "help", "info"]
+            }
+        });
+
+    }
+</script>
+
+</html>
