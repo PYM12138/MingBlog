@@ -3,7 +3,7 @@
 >
 <head>
     <meta charset="UTF-8">
-    <title>网站管理 | 文章编辑</title>
+    <title>网站管理 | 评论管理</title>
 
     <link rel="stylesheet" th:href="@{/adminLTE/dist/css/adminlte.min.css}">
     <link href="css/bootstrap.min.css" rel="stylesheet" th:href="@{/font-awesome-4.7.0/css/font-awesome.min.css}">
@@ -46,6 +46,12 @@
 
         .nav-treeview p {
             font-size: 14px;
+        }
+
+        .btn-no-border {
+            border: none;
+            outline: none;
+            box-shadow: none;
         }
 
 
@@ -288,8 +294,8 @@
                         <ul class="nav nav-treeview ">
                             <li class="nav-item">
                                 <a href="#" class="nav-link active">
-                                    <i class="fa fa-circle-o nav-icon"></i>
-                                    <p>新增评论</p>
+                                    <i class="fa fa-circle-o nav-icon "></i>
+                                    <p>评论审核</p>
                                     <span class="right badge badge-danger">New</span>
                                 </a>
                             </li>
@@ -324,152 +330,66 @@
         <section class="content-header">
             <div class="container-fluid">
                 <div class="row mb-2">
-                    <div class="col-sm-6">
-                        <h1><i class=" fa fa-file-code-o mr-2" aria-hidden="true"></i>文章管理</h1>
-                    </div>
-                    <div class=" col-sm-6">
-                        <ol class="breadcrumb  float-sm-right">
-                            <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active">文章管理</li>
-                            <li class="breadcrumb-item active">发表文章</li>
-                        </ol>
-                    </div>
+                    <h1>
+                        <i class=" fa fa-file-code-o mr-2" aria-hidden="true"></i>评论管理
+                    </h1>
+                    <ol class="breadcrumb ml-2 mt-2">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item active">评论管理</li>
+                        <li class="breadcrumb-item active">评论审核</li>
+                    </ol>
                 </div>
             </div><!-- /.container-fluid -->
         </section>
         <!-- Main content -->
-        <section class="content">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-3">
-                        <div class="card  card-primary " style="height: 730px">
-                            <div class="card-header text-center">
-                                <h5 class="mb-0">
-                                    <i class="fa fa-info" aria-hidden="true"></i>
-                                    文章基本信息
-                                </h5>
-                            </div>
-                            <div class="card-body">
-                                <div id="editArticle_title">
-                                    <div class="form-group">
-                                        <label>
-                                            文章ID
-                                            <i class="fa fa-key text-danger" aria-hidden="true"></i>
-                                        </label>
-                                        <input type="text" class="form-control" placeholder="">
-                                    </div>
-                                    <!--<div class="form-group">
-                                        <label>标题</label>
-                                        <input type="text" class="form-control" placeholder="标题在100个字以内">
-                                    </div>-->
-                                    <div class="form-group">
-                                        <label for="exampleInputBorderWidth2">标题</label>
-                                        <input type="text" class="form-control form-control-border border-width-2"
-                                               id="exampleInputBorderWidth2" placeholder="标题在100个字以内">
-                                    </div>
-                                </div>
-                                <div id="editArticle_contentOverview">
-                                    <div class="form-group">
-                                        <label>内容梗概</label>
-                                        <textarea class="form-control" rows="3" style="min-height: 100px"
-                                                  placeholder="Enter ..."></textarea>
-                                    </div>
-                                </div>
-                                <div id="editArticle_type">
-                                    <label>类型</label>
-                                    <div class="row form-group">
-                                        <div class="custom-control custom-radio ml-2">
-                                            <input class="custom-control-input" type="radio" id="customRadio2"
-                                                   name="customRadio" checked="">
-                                            <label for="customRadio2"
-                                                   class="custom-control-label badge badge-btn badge-info ">原创</label>
-                                        </div>
-                                        <div class="custom-control custom-radio ml-2">
-                                            <input class="custom-control-input" type="radio" id="customRadio3"
-                                                   name="customRadio" checked="">
-                                            <label for="customRadio3"
-                                                   class="custom-control-label badge badge-btn badge-danger">转载</label>
-                                        </div>
-                                        <div class="custom-control custom-radio ml-2">
-                                            <input class="custom-control-input" type="radio" id="customRadio4"
-                                                   name="customRadio" checked="">
-                                            <label for="customRadio4"
-                                                   class="custom-control-label badge badge-btn badge-success">分享</label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div id="editArticle_category">
-                                    <div class="form-group">
-                                        <label>分类</label>
-                                        <select class="form-control">
-                                            <option>我的故事</option>
-                                            <option>option 2</option>
-                                            <option>option 3</option>
-                                            <option>option 4</option>
-                                            <option>option 5</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div id="editArticle_tag">
-                                    <div class="form-group">
-                                        <label>标签</label>
-                                        <input type="text" class="form-control" placeholder="标签之间用逗号隔开">
-                                    </div>
-                                </div>
-                                <div id="editArticle_time">
-
-                                    <div class="form-group">
-                                        <label for="datepicker">选择日期:</label>
-                                        <div class="input-group date" id="datepicker" data-target-input="nearest">
-                                            <input type="text" class="form-control datetimepicker-input"
-                                                   data-target="#datepicker"/>
-                                            <div class="input-group-append" data-target="#datepicker"
-                                                 data-toggle="datetimepicker">
-                                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-
-                            </div>
-                            <div class="card-footer"></div>
-
-                        </div>
+        <section class="content row">
+            <div class="comments-list col-9 ">
+                <div class="card card-outline card-success">
+                    <div class="card-header">来自 <a href="#">asd1523</a></div>
+                    <div class="card-body">
+                        这是一条评论。
+                        <span class="float-right"><i class="fa fa-check-circle fa-2x text-success"></i></span>
                     </div>
-                    <div class="col-9">
-                        <div class="card card-outline card-primary">
-                            <div class="card-header text-center border-bottom-0">
-                                <h5 class="mb-0">
-                                    文章内容编辑
-                                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                                </h5>
-
-                            </div>
-                            <div class="card-body pt-0 pb-0 pl-0 pr-0">
-                                <!--MarkDown的id标志 -->
-                                <div id="my-editormd">
-                                    <!-- 书写与实时显示的textarea -->
-                                    <textarea id="my-editormd-markdown-doc" name="my-editormd-markdown-doc"
-                                              style="display:none;"></textarea>
-                                </div>
-                            </div>
-
-                            <div class="card-footer col-12 ">
-                                <div class="float-right">
-                                    <button type="button" class="btn btn-danger">提交</button>
-                                </div>
+                    <div class="card-footer">
+                        <div class="">
+                            评论于<a href="#">《123》</a>
+                            <div class="float-right">
+                                <button class="approve-btn btn btn-outline-success rounded-pill btn-no-border"><i
+                                        class="fa fa-check fa-2x " aria-hidden="true"></i></button>
+                                <button class="reject-btn btn btn-outline-danger rounded-pill btn-no-border"><i
+                                        class="fa fa-times fa-2x " aria-hidden="true"></i></button>
                             </div>
                         </div>
                     </div>
-
-
                 </div>
-
+                <div class="card card-outline card-danger">
+                    <div class="card-header">来自 <a href="#">asd1523</a></div>
+                    <div class="card-body">
+                        这是一条评论。
+                        <span class="float-right"><i class="fa fa-ban fa-2x text-danger" aria-hidden="true"></i></span>
+                    </div>
+                    <div class="card-footer">
+                        <div class="">
+                            评论于<a href="#">《123》</a>
+                            <div class="float-right">
+                                <button class="approve-btn btn btn-outline-success rounded-pill btn-no-border"><i
+                                        class="fa fa-check fa-2x " aria-hidden="true"></i></button>
+                                <button class="reject-btn btn btn-outline-danger rounded-pill btn-no-border"><i
+                                        class="fa fa-times fa-2x " aria-hidden="true"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-
-
+            <div class="col-3">
+                <div class="card card-outline card-warning">
+                    <div class="card-header" style="font-size: 20px"><b class="text-warning">提示</b></div>
+                    <div class="card-body" style="height: 300px">审核通过后，<strong>两小时后</strong>显示评论</div>
+                </div>
+            </div>
         </section>
+
+
     </div>
 </div>
 
@@ -483,55 +403,37 @@
 <script src="js/jquery-3.3.1.js" th:src="@{/js/bootstrap.bundle.min.js}"></script>
 
 <script th:src="@{/adminLTE/plugins/fastclick/fastclick.js}"></script>
-<script th:src="@{/adminLTE/plugins/moment/moment.min.js}"></script>
-<script th:src="@{/editormd/editormd.min.js}"></script>
-<script th:src="@{/adminLTE/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js}"></script>
+
 
 <script th:src="@{/adminLTE/dist/js/adminlte.min.js}"></script>
 
 
 <script>
+
     $(function () {
-        editorMd_init();
-        tempus_init();
+            $('.approve-btn').click(function () {
+                var comment = $(this).closest('.comment');
+                comment.removeClass('comment-pending');
+                comment.addClass('comment-approved');
+                comment.find('.approve-btn').remove();
+                comment.find('.reject-btn').remove();
+                comment.append('<span class="status-icon"><i class="fa fa-check-circle"></i></span>');
+            });
 
 
-    });
+        }
+    )
+    /*   var expandBtn = document.getElementById("expand-btn");
+       expandBtn.addEventListener("click", function() {
+           var expandableContent = document.querySelector("[data-widget='expandable-table']");
+           var isExpanded = expandableContent.getAttribute("aria-expanded");
 
-    function tempus_init() {
-        $('#datepicker').datetimepicker({
-            format: 'YYYY-MM-DD HH:mm'
-        });
-    }
-
-
-    function editorMd_init() {
-        testEditor = editormd("my-editormd", { //注意1：这里的就是上面的DIV的id属性值
-            width: "100%",
-            height: 600,
-            syncScrolling: true, //设置双向滚动
-            path: "../../../editormd/lib/", //lib目录的路径
-            previewTheme: "white", //代码块使用dark主题
-            codeFold: true,
-            emoji: true,
-            tocm: true, // Using [TOCM]
-            tex: true, // 开启科学公式TeX语言支持，默认关闭
-            flowChart: true, // 开启流程图支持，默认关闭
-            sequenceDiagram: true, // 开启时序/序列图支持，默认关闭,
-            htmlDecode: true, //不过滤标签
-            imageUpload: true, //上传图片
-            imageFormats: ["jpg", "jpeg", "gif", "png", "bmp", "webp", "JPG", "JPEG", "GIF", "PNG", "BMP", "WEBP"],
-            imageUploadURL: "/uploadImage",
-            saveHTMLToTextarea: true, //注意3：这个配置，方便post提交表单
-            onload: function () {
-                // console.log('onload', this);
-            },
-            toolbarIcons: function () {
-                return ["bold", "del", "italic", "quote", "|", "h1", "h2", "h3", "h4", "h5", "h6", "|", "list-ul", "list-ol", "hr", "|", "link", "image", "code", "code-block", "table", "datetime", "html-entities", "emoji", "|", "watch", "preview", "fullscreen", "clear", "search", "|", "help", "info"]
-            }
-        });
-
-    }
+           if (isExpanded === "true") {
+               expandableContent.setAttribute("aria-expanded", "false");
+           } else {
+               expandableContent.setAttribute("aria-expanded", "true");
+           }
+       });*/
 </script>
 
 </html>

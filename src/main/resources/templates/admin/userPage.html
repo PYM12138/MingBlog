@@ -3,7 +3,7 @@
 >
 <head>
     <meta charset="UTF-8">
-    <title>网站管理 | 文章编辑</title>
+    <title>网站管理 | 个人资料</title>
 
     <link rel="stylesheet" th:href="@{/adminLTE/dist/css/adminlte.min.css}">
     <link href="css/bootstrap.min.css" rel="stylesheet" th:href="@{/font-awesome-4.7.0/css/font-awesome.min.css}">
@@ -319,157 +319,236 @@
         <!-- /.sidebar -->
     </aside>
     <!--页面主体内容-->
-    <div class="content-wrapper">
-        <!-- Content Header (Page header) -->
+    <div class="content-wrapper" style="min-height: 1604.8px;">
         <section class="content-header">
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1><i class=" fa fa-file-code-o mr-2" aria-hidden="true"></i>文章管理</h1>
+                        <h1>个人资料</h1>
                     </div>
-                    <div class=" col-sm-6">
-                        <ol class="breadcrumb  float-sm-right">
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active">文章管理</li>
-                            <li class="breadcrumb-item active">发表文章</li>
+                            <li class="breadcrumb-item active">User Profile</li>
                         </ol>
                     </div>
                 </div>
-            </div><!-- /.container-fluid -->
+            </div>
         </section>
-        <!-- Main content -->
         <section class="content">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-3">
-                        <div class="card  card-primary " style="height: 730px">
-                            <div class="card-header text-center">
-                                <h5 class="mb-0">
-                                    <i class="fa fa-info" aria-hidden="true"></i>
-                                    文章基本信息
-                                </h5>
+                    <div class="col-md-3">
+                        <div class="card card-primary card-outline">
+                            <div class="card-body box-profile">
+                                <div class="text-center">
+                                    <img class="profile-user-img img-fluid img-circle"
+                                         th:src="@{/adminLTE/img/user4-128x128.jpg}" alt="User profile picture">
+                                </div>
+                                <h3 class="profile-username text-center">Nina Mcintire</h3>
+                                <ul class="list-group list-group-unbordered mb-3">
+                                    <li class="list-group-item">
+                                        <b>用户名</b> <a class="float-right">pym</a>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <b>性别</b> <a class="float-right">男</a>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <b>生日</b> <a class="float-right">2001.06.23</a>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <b>电子邮件</b> <a class="float-right">1602315416@qq.com</a>
+                                    </li>
+                                </ul>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="card card-info">
+                            <div class="card-header">
+                                <h3 class="card-title">提示</h3>
                             </div>
                             <div class="card-body">
-                                <div id="editArticle_title">
-                                    <div class="form-group">
-                                        <label>
-                                            文章ID
-                                            <i class="fa fa-key text-danger" aria-hidden="true"></i>
-                                        </label>
-                                        <input type="text" class="form-control" placeholder="">
-                                    </div>
-                                    <!--<div class="form-group">
-                                        <label>标题</label>
-                                        <input type="text" class="form-control" placeholder="标题在100个字以内">
-                                    </div>-->
-                                    <div class="form-group">
-                                        <label for="exampleInputBorderWidth2">标题</label>
-                                        <input type="text" class="form-control form-control-border border-width-2"
-                                               id="exampleInputBorderWidth2" placeholder="标题在100个字以内">
-                                    </div>
-                                </div>
-                                <div id="editArticle_contentOverview">
-                                    <div class="form-group">
-                                        <label>内容梗概</label>
-                                        <textarea class="form-control" rows="3" style="min-height: 100px"
-                                                  placeholder="Enter ..."></textarea>
-                                    </div>
-                                </div>
-                                <div id="editArticle_type">
-                                    <label>类型</label>
-                                    <div class="row form-group">
-                                        <div class="custom-control custom-radio ml-2">
-                                            <input class="custom-control-input" type="radio" id="customRadio2"
-                                                   name="customRadio" checked="">
-                                            <label for="customRadio2"
-                                                   class="custom-control-label badge badge-btn badge-info ">原创</label>
-                                        </div>
-                                        <div class="custom-control custom-radio ml-2">
-                                            <input class="custom-control-input" type="radio" id="customRadio3"
-                                                   name="customRadio" checked="">
-                                            <label for="customRadio3"
-                                                   class="custom-control-label badge badge-btn badge-danger">转载</label>
-                                        </div>
-                                        <div class="custom-control custom-radio ml-2">
-                                            <input class="custom-control-input" type="radio" id="customRadio4"
-                                                   name="customRadio" checked="">
-                                            <label for="customRadio4"
-                                                   class="custom-control-label badge badge-btn badge-success">分享</label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div id="editArticle_category">
-                                    <div class="form-group">
-                                        <label>分类</label>
-                                        <select class="form-control">
-                                            <option>我的故事</option>
-                                            <option>option 2</option>
-                                            <option>option 3</option>
-                                            <option>option 4</option>
-                                            <option>option 5</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div id="editArticle_tag">
-                                    <div class="form-group">
-                                        <label>标签</label>
-                                        <input type="text" class="form-control" placeholder="标签之间用逗号隔开">
-                                    </div>
-                                </div>
-                                <div id="editArticle_time">
+                                可在setting中更改个人资料哦~
+                            </div>
+                            <div class="card-footer">
+                                <span class="float-right">2023.07.06</span>
 
-                                    <div class="form-group">
-                                        <label for="datepicker">选择日期:</label>
-                                        <div class="input-group date" id="datepicker" data-target-input="nearest">
-                                            <input type="text" class="form-control datetimepicker-input"
-                                                   data-target="#datepicker"/>
-                                            <div class="input-group-append" data-target="#datepicker"
-                                                 data-toggle="datetimepicker">
-                                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-9">
+                        <div class="card">
+                            <div class="card-header p-2">
+                                <ul class="nav nav-pills">
+                                    <li class="nav-item">
+                                        <a class="nav-link active" href="#timeline"
+                                           data-toggle="tab">历史记录</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#settings"
+                                           data-toggle="tab">Settings</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="card-body">
+                                <div class="tab-content">
+                                    <div class="active tab-pane" id="timeline">
+
+                                        <div class="timeline timeline-inverse">
+                                            <!--                                            时间节点-->
+                                            <div class="time-label">
+                                                <span class="bg-danger">
+                                                10 Feb. 2014
+                                                </span>
+                                            </div>
+
+                                            <div>
+                                                <i class="fa fa-envelope bg-primary"></i>
+                                                <div class="timeline-item">
+                                                    <span class="time"><i class="fa fa-clock-o"></i> 12:05</span>
+                                                    <h3 class="timeline-header"><a href="#">Support Team</a> sent you an
+                                                        email</h3>
+                                                    <div class="timeline-body">
+                                                        Etsy doostang zoodles disqus groupon greplin oooj voxy zoodles,
+                                                        weebly ning heekya handango imeem plugg dopplr jibjab, movity
+                                                        jajah plickers sifteo edmodo ifttt zimbra. Babblely odeo
+                                                        kaboodle
+                                                        quora plaxo ideeli hulu weebly balihoo...
+                                                    </div>
+                                                    <div class="timeline-footer">
+                                                        <a href="#" class="btn btn-primary btn-sm">Read more</a>
+                                                        <a href="#" class="btn btn-danger btn-sm">Delete</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                            <div>
+                                                <i class="fa fa-thumbs-up bg-info"></i>
+                                                <div class="timeline-item">
+                                                    <span class="time"><i class="fa fa-clock-o"></i> 5 mins ago</span>
+                                                    <h3 class="timeline-header border-0"><a href="#">点赞</a>
+                                                        你点赞了文章xxxx
+                                                    </h3>
+                                                </div>
+                                            </div>
+
+
+                                            <div>
+                                                <i class="fas fa-comments bg-warning"></i>
+                                                <div class="timeline-item">
+                                                    <span class="time"><i class="far fa-clock"></i> 27 mins ago</span>
+                                                    <h3 class="timeline-header"><a href="#">Jay White</a> commented on
+                                                        your post</h3>
+                                                    <div class="timeline-body">
+                                                        Take me to your leader!
+                                                        Switzerland is small and neutral!
+                                                        We are more like Germany, ambitious and misunderstood!
+                                                    </div>
+                                                    <div class="timeline-footer">
+                                                        <a href="#" class="btn btn-warning btn-flat btn-sm">View
+                                                            comment</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="time-label">
+                                                <span class="bg-success">
+                                                3 Jan. 2014
+                                                </span>
+                                            </div>
+
+
+                                            <div>
+                                                <i class="fa fa-camera bg-purple"></i>
+                                                <div class="timeline-item">
+                                                    <span class="time"><i class="fa fa-clock-o"></i> 2 days ago</span>
+                                                    <h3 class="timeline-header"><a href="#">Mina Lee</a> uploaded new
+                                                        photos</h3>
+                                                    <div class="timeline-body">
+                                                        <img src="https://placehold.it/150x100" alt="...">
+                                                        <img src="https://placehold.it/150x100" alt="...">
+                                                        <img src="https://placehold.it/150x100" alt="...">
+                                                        <img src="https://placehold.it/150x100" alt="...">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div>
+                                                <i class="fa fa-clock-o bg-gray"></i>
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="tab-pane" id="settings">
+                                        <form class="form-horizontal">
+                                            <div class="form-group row">
+                                                <label for="inputName" class="col-sm-2 col-form-label">Name</label>
+                                                <div class="col-sm-10">
+                                                    <input type="email" class="form-control" id="inputName"
+                                                           placeholder="Name">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
+                                                <div class="col-sm-10">
+                                                    <input type="email" class="form-control" id="inputEmail"
+                                                           placeholder="Email">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="inputName2" class="col-sm-2 col-form-label">Name</label>
+                                                <div class="col-sm-10">
+                                                    <input type="text" class="form-control" id="inputName2"
+                                                           placeholder="Name">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="inputExperience"
+                                                       class="col-sm-2 col-form-label">Experience</label>
+                                                <div class="col-sm-10">
+                                                    <textarea class="form-control" id="inputExperience"
+                                                              placeholder="Experience"></textarea>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="inputSkills" class="col-sm-2 col-form-label">Skills</label>
+                                                <div class="col-sm-10">
+                                                    <input type="text" class="form-control" id="inputSkills"
+                                                           placeholder="Skills">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <div class="offset-sm-2 col-sm-10">
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox"> I agree to the <a href="#">terms and
+                                                            conditions</a>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <div class="offset-sm-2 col-sm-10">
+                                                    <button type="submit" class="btn btn-danger">Submit</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
                                 </div>
-
-
                             </div>
-                            <div class="card-footer"></div>
-
                         </div>
                     </div>
-                    <div class="col-9">
-                        <div class="card card-outline card-primary">
-                            <div class="card-header text-center border-bottom-0">
-                                <h5 class="mb-0">
-                                    文章内容编辑
-                                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                                </h5>
-
-                            </div>
-                            <div class="card-body pt-0 pb-0 pl-0 pr-0">
-                                <!--MarkDown的id标志 -->
-                                <div id="my-editormd">
-                                    <!-- 书写与实时显示的textarea -->
-                                    <textarea id="my-editormd-markdown-doc" name="my-editormd-markdown-doc"
-                                              style="display:none;"></textarea>
-                                </div>
-                            </div>
-
-                            <div class="card-footer col-12 ">
-                                <div class="float-right">
-                                    <button type="button" class="btn btn-danger">提交</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
                 </div>
-
             </div>
-
-
         </section>
+
     </div>
 </div>
 
@@ -483,55 +562,11 @@
 <script src="js/jquery-3.3.1.js" th:src="@{/js/bootstrap.bundle.min.js}"></script>
 
 <script th:src="@{/adminLTE/plugins/fastclick/fastclick.js}"></script>
-<script th:src="@{/adminLTE/plugins/moment/moment.min.js}"></script>
-<script th:src="@{/editormd/editormd.min.js}"></script>
-<script th:src="@{/adminLTE/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js}"></script>
-
 <script th:src="@{/adminLTE/dist/js/adminlte.min.js}"></script>
-
-
 <script>
-    $(function () {
-        editorMd_init();
-        tempus_init();
-
-
-    });
-
-    function tempus_init() {
-        $('#datepicker').datetimepicker({
-            format: 'YYYY-MM-DD HH:mm'
-        });
-    }
-
-
-    function editorMd_init() {
-        testEditor = editormd("my-editormd", { //注意1：这里的就是上面的DIV的id属性值
-            width: "100%",
-            height: 600,
-            syncScrolling: true, //设置双向滚动
-            path: "../../../editormd/lib/", //lib目录的路径
-            previewTheme: "white", //代码块使用dark主题
-            codeFold: true,
-            emoji: true,
-            tocm: true, // Using [TOCM]
-            tex: true, // 开启科学公式TeX语言支持，默认关闭
-            flowChart: true, // 开启流程图支持，默认关闭
-            sequenceDiagram: true, // 开启时序/序列图支持，默认关闭,
-            htmlDecode: true, //不过滤标签
-            imageUpload: true, //上传图片
-            imageFormats: ["jpg", "jpeg", "gif", "png", "bmp", "webp", "JPG", "JPEG", "GIF", "PNG", "BMP", "WEBP"],
-            imageUploadURL: "/uploadImage",
-            saveHTMLToTextarea: true, //注意3：这个配置，方便post提交表单
-            onload: function () {
-                // console.log('onload', this);
-            },
-            toolbarIcons: function () {
-                return ["bold", "del", "italic", "quote", "|", "h1", "h2", "h3", "h4", "h5", "h6", "|", "list-ul", "list-ol", "hr", "|", "link", "image", "code", "code-block", "table", "datetime", "html-entities", "emoji", "|", "watch", "preview", "fullscreen", "clear", "search", "|", "help", "info"]
-            }
-        });
-
-    }
+    document.addEventListener('DOMContentLoaded', function () {
+        FastClick.attach(document.body);
+    }, false);
 </script>
 
 </html>

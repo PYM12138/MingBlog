@@ -3,7 +3,7 @@
 >
 <head>
     <meta charset="UTF-8">
-    <title>网站管理 | 文章编辑</title>
+    <title>网站管理 | 文章管理</title>
 
     <link rel="stylesheet" th:href="@{/adminLTE/dist/css/adminlte.min.css}">
     <link href="css/bootstrap.min.css" rel="stylesheet" th:href="@{/font-awesome-4.7.0/css/font-awesome.min.css}">
@@ -331,7 +331,7 @@
                         <ol class="breadcrumb  float-sm-right">
                             <li class="breadcrumb-item"><a href="#">Home</a></li>
                             <li class="breadcrumb-item active">文章管理</li>
-                            <li class="breadcrumb-item active">发表文章</li>
+                            <li class="breadcrumb-item active">管理文章</li>
                         </ol>
                     </div>
                 </div>
@@ -339,133 +339,60 @@
         </section>
         <!-- Main content -->
         <section class="content">
-            <div class="container-fluid">
+            <div class="container">
                 <div class="row">
-                    <div class="col-3">
-                        <div class="card  card-primary " style="height: 730px">
-                            <div class="card-header text-center">
-                                <h5 class="mb-0">
-                                    <i class="fa fa-info" aria-hidden="true"></i>
-                                    文章基本信息
-                                </h5>
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">管理文章</h3>
                             </div>
                             <div class="card-body">
-                                <div id="editArticle_title">
-                                    <div class="form-group">
-                                        <label>
-                                            文章ID
-                                            <i class="fa fa-key text-danger" aria-hidden="true"></i>
-                                        </label>
-                                        <input type="text" class="form-control" placeholder="">
-                                    </div>
-                                    <!--<div class="form-group">
-                                        <label>标题</label>
-                                        <input type="text" class="form-control" placeholder="标题在100个字以内">
-                                    </div>-->
-                                    <div class="form-group">
-                                        <label for="exampleInputBorderWidth2">标题</label>
-                                        <input type="text" class="form-control form-control-border border-width-2"
-                                               id="exampleInputBorderWidth2" placeholder="标题在100个字以内">
-                                    </div>
-                                </div>
-                                <div id="editArticle_contentOverview">
-                                    <div class="form-group">
-                                        <label>内容梗概</label>
-                                        <textarea class="form-control" rows="3" style="min-height: 100px"
-                                                  placeholder="Enter ..."></textarea>
-                                    </div>
-                                </div>
-                                <div id="editArticle_type">
-                                    <label>类型</label>
-                                    <div class="row form-group">
-                                        <div class="custom-control custom-radio ml-2">
-                                            <input class="custom-control-input" type="radio" id="customRadio2"
-                                                   name="customRadio" checked="">
-                                            <label for="customRadio2"
-                                                   class="custom-control-label badge badge-btn badge-info ">原创</label>
-                                        </div>
-                                        <div class="custom-control custom-radio ml-2">
-                                            <input class="custom-control-input" type="radio" id="customRadio3"
-                                                   name="customRadio" checked="">
-                                            <label for="customRadio3"
-                                                   class="custom-control-label badge badge-btn badge-danger">转载</label>
-                                        </div>
-                                        <div class="custom-control custom-radio ml-2">
-                                            <input class="custom-control-input" type="radio" id="customRadio4"
-                                                   name="customRadio" checked="">
-                                            <label for="customRadio4"
-                                                   class="custom-control-label badge badge-btn badge-success">分享</label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div id="editArticle_category">
-                                    <div class="form-group">
-                                        <label>分类</label>
-                                        <select class="form-control">
-                                            <option>我的故事</option>
-                                            <option>option 2</option>
-                                            <option>option 3</option>
-                                            <option>option 4</option>
-                                            <option>option 5</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div id="editArticle_tag">
-                                    <div class="form-group">
-                                        <label>标签</label>
-                                        <input type="text" class="form-control" placeholder="标签之间用逗号隔开">
-                                    </div>
-                                </div>
-                                <div id="editArticle_time">
-
-                                    <div class="form-group">
-                                        <label for="datepicker">选择日期:</label>
-                                        <div class="input-group date" id="datepicker" data-target-input="nearest">
-                                            <input type="text" class="form-control datetimepicker-input"
-                                                   data-target="#datepicker"/>
-                                            <div class="input-group-append" data-target="#datepicker"
-                                                 data-toggle="datetimepicker">
-                                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-
+                                <table class="table table-bordered table-hover">
+                                    <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>标题</th>
+                                        <th>分类</th>
+                                        <th>标签</th>
+                                        <th>发布日期</th>
+                                        <th>操作</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr data-widget="expandable-table" aria-expanded="false">
+                                        <td>2023070301</td>
+                                        <td><a href="#">如约而至</a></td>
+                                        <td>我的故事</td>
+                                        <td>学习，生活</td>
+                                        <td>2023/7/3 23:23</td>
+                                        <td>
+                                            <button class="btn btn-outline-success">编辑</button>
+                                            <button class="btn btn-outline-danger">删除</button>
+                                        </td>
+                                    </tr>
+                                    <tr class="expandable-body d-none">
+                                        <td colspan="6">
+                                            <p style="display: none;">
+                                                Lorem Ipsum is simply dummy text of the printing and typesetting
+                                                industry. Lorem Ipsum has been the industry's standard dummy text ever
+                                                since the 1500s, when an unknown printer took a galley of type and
+                                                scrambled it to make a type specimen book. It has survived not only five
+                                                centuries, but also the leap into electronic typesetting, remaining
+                                                essentially unchanged. It was popularised in the 1960s with the release
+                                                of Letraset sheets containing Lorem Ipsum passages, and more recently
+                                                with desktop publishing software like Aldus PageMaker including versions
+                                                of Lorem Ipsum.
+                                            </p>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
                             </div>
-                            <div class="card-footer"></div>
 
                         </div>
+
                     </div>
-                    <div class="col-9">
-                        <div class="card card-outline card-primary">
-                            <div class="card-header text-center border-bottom-0">
-                                <h5 class="mb-0">
-                                    文章内容编辑
-                                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                                </h5>
-
-                            </div>
-                            <div class="card-body pt-0 pb-0 pl-0 pr-0">
-                                <!--MarkDown的id标志 -->
-                                <div id="my-editormd">
-                                    <!-- 书写与实时显示的textarea -->
-                                    <textarea id="my-editormd-markdown-doc" name="my-editormd-markdown-doc"
-                                              style="display:none;"></textarea>
-                                </div>
-                            </div>
-
-                            <div class="card-footer col-12 ">
-                                <div class="float-right">
-                                    <button type="button" class="btn btn-danger">提交</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
                 </div>
-
             </div>
 
 
@@ -483,55 +410,51 @@
 <script src="js/jquery-3.3.1.js" th:src="@{/js/bootstrap.bundle.min.js}"></script>
 
 <script th:src="@{/adminLTE/plugins/fastclick/fastclick.js}"></script>
-<script th:src="@{/adminLTE/plugins/moment/moment.min.js}"></script>
-<script th:src="@{/editormd/editormd.min.js}"></script>
-<script th:src="@{/adminLTE/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js}"></script>
+
 
 <script th:src="@{/adminLTE/dist/js/adminlte.min.js}"></script>
 
 
 <script>
+
     $(function () {
-        editorMd_init();
-        tempus_init();
+            $("tr td button").on('click', function () {
+                var expandableContent = document.querySelector("[data-widget='expandable-table']");
+                var isExpanded = expandableContent.getAttribute("aria-expanded");
+                if (isExpanded === "true") {
+                    //当点击按钮的时候，第一时间给了true的值，然后立马被捕捉到了，之后给了一个false的值
+                    expandableContent.setAttribute("aria-expanded", "false");
+                } else {
+                    expandableContent.setAttribute("aria-expanded", "true");
+                }
+
+            })
+            $("tr td a").on('click', function () {
+                var expandableContent = document.querySelector("[data-widget='expandable-table']");
+                var isExpanded = expandableContent.getAttribute("aria-expanded");
+                if (isExpanded === "true") {
+                    //当点击按钮的时候，第一时间给了true的值，然后立马被捕捉到了，之后给了一个false的值
+                    expandableContent.setAttribute("aria-expanded", "false");
+                } else {
+                    expandableContent.setAttribute("aria-expanded", "true");
+                }
+
+            })
 
 
-    });
+        }
+    )
+    /*   var expandBtn = document.getElementById("expand-btn");
+       expandBtn.addEventListener("click", function() {
+           var expandableContent = document.querySelector("[data-widget='expandable-table']");
+           var isExpanded = expandableContent.getAttribute("aria-expanded");
 
-    function tempus_init() {
-        $('#datepicker').datetimepicker({
-            format: 'YYYY-MM-DD HH:mm'
-        });
-    }
-
-
-    function editorMd_init() {
-        testEditor = editormd("my-editormd", { //注意1：这里的就是上面的DIV的id属性值
-            width: "100%",
-            height: 600,
-            syncScrolling: true, //设置双向滚动
-            path: "../../../editormd/lib/", //lib目录的路径
-            previewTheme: "white", //代码块使用dark主题
-            codeFold: true,
-            emoji: true,
-            tocm: true, // Using [TOCM]
-            tex: true, // 开启科学公式TeX语言支持，默认关闭
-            flowChart: true, // 开启流程图支持，默认关闭
-            sequenceDiagram: true, // 开启时序/序列图支持，默认关闭,
-            htmlDecode: true, //不过滤标签
-            imageUpload: true, //上传图片
-            imageFormats: ["jpg", "jpeg", "gif", "png", "bmp", "webp", "JPG", "JPEG", "GIF", "PNG", "BMP", "WEBP"],
-            imageUploadURL: "/uploadImage",
-            saveHTMLToTextarea: true, //注意3：这个配置，方便post提交表单
-            onload: function () {
-                // console.log('onload', this);
-            },
-            toolbarIcons: function () {
-                return ["bold", "del", "italic", "quote", "|", "h1", "h2", "h3", "h4", "h5", "h6", "|", "list-ul", "list-ol", "hr", "|", "link", "image", "code", "code-block", "table", "datetime", "html-entities", "emoji", "|", "watch", "preview", "fullscreen", "clear", "search", "|", "help", "info"]
-            }
-        });
-
-    }
+           if (isExpanded === "true") {
+               expandableContent.setAttribute("aria-expanded", "false");
+           } else {
+               expandableContent.setAttribute("aria-expanded", "true");
+           }
+       });*/
 </script>
 
 </html>

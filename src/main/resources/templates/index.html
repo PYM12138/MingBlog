@@ -1,27 +1,498 @@
 <!doctype html>
-<html lang="zh-CN">
+<html lang="zh-CN" xmlns:th=http://www.thymeleaf.org
+>
 <head>
     <!-- 必须的 meta 标签 -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <script src="js/jquery-3.3.1.js" th:src="@{/js/jquery-3.5.1.min.js}"></script>
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
-    <title>Hello, world!</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet" th:href="@{/font-awesome-4.7.0/css/font-awesome.min.css}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+
+    <style>
+        @font-face {
+            font-family: 'al-RegularL3';
+            src: url(../fonts/AlibabaPuHuiTi-3-55-RegularL3.woff2);
+        }
+
+        @font-face {
+            font-family: 'al-Regular';
+            src: url(../fonts/AlibabaPuHuiTi-3-55-Regular.woff2);
+        }
+
+        @font-face {
+            font-family: 'al-Thin';
+            src: url(../fonts/AlibabaPuHuiTi-3-35-Thin.woff2);
+        }
+
+        @font-face {
+            font-family: 'al-Light';
+            src: url(../fonts/AlibabaPuHuiTi-3-45-Light.woff2);
+        }
+
+        @font-face {
+            font-family: 'al-SemiBold';
+            src: url(../fonts/AlibabaPuHuiTi-3-75-SemiBold.woff2);
+        }
+
+        body {
+            font-family: al-Regular;
+            font-size: 17px;
+        }
+
+        .nav-link {
+            position: relative;
+            padding-bottom: 5px;
+        }
+
+        .nav-link::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 2px;
+            background-color: gray;
+            transform: scaleX(0);
+            transition: transform 0.2s ease-in-out;
+        }
+
+        .nav-link:hover::after {
+            transform: scaleX(1);
+        }
+
+        .nav-link.active::after {
+            transform: scaleX(1);
+        }
+
+        #center-cards .card {
+            cursor: pointer;
+            transition: transform 0.2s ease-out;
+        }
+
+        #center-cards .card-title {
+            font-family: al-Regular;
+
+        }
+
+        #center-cards-component div {
+            font-family: al-Regular;
+        }
+
+        #center-cards .card-text {
+            font-family: al-Light;
+
+        }
+
+        #center-cards .card:hover {
+            transform: translateY(-5px);
+        }
+
+
+        #center-cards-component .badge {
+            cursor: default;
+            font-size: 18px;
+
+        }
+
+        #center-cards .card-text {
+            /*card内容缩略展示*/
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 4;
+            overflow: hidden;
+        }
+
+        #center-cards img {
+            width: auto;
+            height: 300px;
+        }
+
+        #website_dashMini div {
+            font-family: al-Light;
+            font-size: 15px;
+        }
+
+        #website_dashMini p {
+            margin: 7px 0;
+        }
+
+        #tags span {
+            font-size: 18px;
+        }
+
+
+    </style>
+    <title>一纸鸳语</title>
 </head>
 <body>
-<h1>Hello,world! </h1>
+<!--导航条-->
+<nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm fixed-top">
+    <a class="navbar-brand" href="#">一纸鸳语</a>
+    <div class="d-block d-lg-none offset-4 offset-sm-6 offset-md-7">
+        <!--        折叠之后的出现再导航条位置的小窗口，TODO 小屏幕的小窗功能暂未开发-->
+        <img th:src="@{/img/test2.jpg}" width="50px" height="50px" class="rounded float-left img-thumbnail mr-2 "
+             alt="...">
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon">  </span>
+    </button>
 
-<!-- JavaScript 文件是可选的。从以下两种建议中选择一个即可！ -->
+    <div class="collapse navbar-collapse " id="navbarSupportedContent">
+        <ul class="offset-xl-4  offset-lg-2 navbar-nav mr-auto">
+            <li class="nav-item mr-2">
+                <a class="nav-link  active "><i class="fa fa-home mr-1" aria-hidden="true"></i>主页</a>
+            </li>
+            <li class="nav-item mr-2">
+                <a class="nav-link" th:href="@{/archive}"><i class="fa fa-archive mr-1"></i>归档</a>
+            </li>
+            <li class="nav-item mr-2">
+                <a class="nav-link" th:href="@{/learn}"><i class="fa fa-book mr-1" aria-hidden="true"></i>学习</a>
+            </li>
+            <!--            <li class="nav-item mr-2">-->
+            <!--                &lt;!&ndash;TODO game页面暂不开发，时机成熟了直接写一个游戏网站&ndash;&gt;-->
+            <!--                <a class="nav-link" href="#"><i class="fa fa-gamepad mr-1 " aria-hidden="true"></i>游戏</a>-->
+            <!--            </li>-->
+            <li class="nav-item mr-2">
+                <a class="nav-link" th:href="@{/updateRecord}"><i class="fa fa-check-circle mr-1"
+                                                                  aria-hidden="true"></i>更新</a>
+            </li>
+            <li class="nav-item mr-2">
+                <!-- TODO 6/21搞定关于我页面-->
+                <a class="nav-link" th:href="@{/aboutMe}"><i class="fa fa-address-card mr-1" aria-hidden="true"></i>关于我</a>
+            </li>
+            <!-- <li class="nav-item dropdown">
+                 <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
+                     Dropdown
+                 </a>
+                 <div class="dropdown-menu">
+                     <a class="dropdown-item" href="#">Action</a>
+                     <a class="dropdown-item" href="#">Another action</a>
+                     <div class="dropdown-divider"></div>
+                     <a class="dropdown-item" href="#">Something else here</a>
+                 </div>
+             </li>
+             <li class="nav-item">
+                 <a class="nav-link disabled">Disabled</a>
+             </li>-->
+        </ul>
+        <a class="btn btn-primary" th:href="@{/login}" role="button" style="font-family: al-Light;"> <i
+                class="fa fa-sign-in mr-1" aria-hidden="true"></i><span>登录/注册</span></a>
+    </div>
+</nav>
+<!--遮罩层-->
+<div class="modal fade" id="loadingModal" tabindex="-1" role="dialog" aria-labelledby="loadingModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-body text-center">
+                <div class="spinner-border text-primary" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
+                <p class="mt-2">Please wait...</p>
+            </div>
+        </div>
+    </div>
+</div>
 
-<!-- 选项 1：jQuery 和 Bootstrap 集成包（集成了 Popper） -->
-<script src="js/jquery-3.3.1.js" th:src="@{/js/bootstrap.bundle.min.js}"></script>
-<!-- 选项 2：Popper 和 Bootstrap 的 JS 插件各自独立 -->
-<!--
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-Lge2E2XotzMiwH69/MXB72yLpwyENMiOKX8zS8Qo7LDCvaBIWGL+GlRQEKIpYR04" crossorigin="anonymous"></script>
--->
+
+<div class="container-fluid mt-5">
+    <div class="row">
+        <!--首页左边部分-->
+        <div id="left-cards" class="col-lg-3 order-lg-0 col-md-12  order-1 mt-3 ">
+            <div class="card mt-2 shadow-sm" style="border-radius: 0.5rem;">
+                <div class="card-body">
+                    <div class="d-flex flex-column mb-2">
+                        <div class="d-flex">
+                            <div class="col-xl-6  mb-2">
+                                <img th:src="@{/img/huitailang.jpg}" class="rounded float-left mr-2 img-fluid"
+                                     alt="...">
+                            </div>
+                            <div class="col-xl-6 ">
+                                <h5 class="card-title">MingBlog </h5>
+                                <small class="card-text" style="font-size: 13px;color: #808080ad;">welcome
+                                    MingBlog!想要成为一座山welcome MingBlog!想要成为一座山</small>
+                            </div>
+                        </div>
+                        <div class="text-center mb-3">
+                            <button id="left-cards-gz" type="button" class="btn badge-pill btn-primary btn-block  "
+                                    data-toggle="popover" data-trigger="focus">
+                                扫码关注我<img th:src="@{/img/svg/scan.svg}" class="ml-1 text-center" width="21" height="22"
+                                          alt="">
+                            </button>
+                            <hr>
+                        </div>
+                        <div class="text-center">
+                            <i class="fa fa-github fa-2x mr-3 " aria-hidden="true"></i>
+                            <i class="fa fa-telegram  fa-2x mr-3 text-primary" aria-hidden="true"></i>
+                            <i class="fa fa-wechat  fa-2x mr-3 text-success" aria-hidden="true"></i>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!--首页中间部分-->
+        <div id="center-cards" class="col-lg-6  order-lg-1 col-md-12  order-0 mt-3 mr-0 ">
+            <div class="card mt-2 mb-3 shadow">
+                <!--                    <img src="" alt="" th:src="@{/img/test.jpg}"  class="card-img-top img-thumbnail d-none d-sm-block">-->
+                <div class="card-body">
+                    <h4 class="card-title">如约而至 <i class="bi bi-bookmark-plus float-right text-danger"></i></h4>
+
+                    <div id="center-cards-component " class="mb-2 ">
+                        <div class="badge badge-info font-weight-light " style=" font-size: 14px;">原创</div>
+                        <div class="badge font-weight-light text-secondary" style=" font-size: 14px;"><i
+                                class="fa fa-calendar-minus-o mr-1 " aria-hidden="true"></i>2023-6-10
+                        </div>
+                        <div class="badge font-weight-light text-secondary" style=" font-size: 14px;"><i
+                                class="fa fa-folder-open-o mr-1 " aria-hidden="true"></i>我的故事
+                        </div>
+                        <div class="badge font-weight-light text-secondary" style=" font-size: 14px;"><i
+                                class="fa fa-commenting-o mr-1  " aria-hidden="true"></i>评论：<span>5</span></div>
+                        <div class="badge font-weight-light text-secondary" style=" font-size: 14px;"><i
+                                class="fa fa-eye mr-1 text-primary" aria-hidden="true"></i>访问：<span>10</span></div>
+                    </div>
+                    <p class="card-text" style="line-height: 2.0">
+                        欢迎来到我的博客，博客建站于2023/6/8，欢迎来到我的博客，博客建站于2023/6/8，欢迎来到我的博客，
+                        博客建站于2023/6/8，欢迎来到我的博客，博客建站于2023/6/8，欢迎来到我的博客，博客建站于2023/6/8，欢迎来到我的博客，博客建站于2023/6/8，欢迎来到我的博客，博客建站于2023/6/8，欢迎来到我的博客，博客建站于2023/6/8，构想于2020/9/1，便秘三年，终有分娩，欢迎来到我的博客，博客建站于2023/6/8，
+                        构想于2020/9/1，便秘三年，终有分娩，欢迎来到我的博客，博客建站于2023/6/8，
+                        构想于2020/9/1，便秘三年，终有分娩， 欢迎来到我的博客，博客建站于2023/6/8，
+                        构想于2020/9/1，便秘三年，终有分娩，终于在今天成功建站，举国欢庆，妈的我连字都不会打了。。。
+                    </p>
+                    <hr>
+                    <div id="tags">
+                        <span class="font-weight-light text-secondary"><i class="bi bi-pin-angle text-success mr-1"></i>随笔</span>
+                        <span class="font-weight-light text-secondary"><i class="bi bi-pin-angle text-success mr-1"></i>心情</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card mb-3 shadow ">
+                <!--                    <img src="" alt="" th:src="@{/img/test.jpg}"  class="card-img-top img-thumbnail">-->
+                <div class="card-body">
+                    <h4 class="card-title">如约而至 </h4>
+                    <div class="mb-2 ">
+                        <div class="badge badge-info font-weight-lighter ">原创</div>
+                        <div class="badge font-weight-lighter">2023-6-10</div>
+                        <div class="badge font-weight-lighter">我的故事</div>
+                    </div>
+                    <p class="card-text ">
+                        欢迎来到我的博客，博客建站于2023/6/8，欢迎来到我的博客，博客建站于2023/6/8，欢迎来到我的博客，
+                        博客建站于2023/6/8，欢迎来到我的博客，博客建站于2023/6/8，欢迎来到我的博客，博客建站于2023/6/8，欢迎来到我的博客，博客建站于2023/6/8，欢迎来到我的博客，博客建站于2023/6/8，欢迎来到我的博客，博客建站于2023/6/8，构想于2020/9/1，便秘三年，终有分娩，欢迎来到我的博客，博客建站于2023/6/8，
+                        构想于2020/9/1，便秘三年，终有分娩，欢迎来到我的博客，博客建站于2023/6/8，
+                        构想于2020/9/1，便秘三年，终有分娩， 欢迎来到我的博客，博客建站于2023/6/8，
+                        构想于2020/9/1，便秘三年，终有分娩，终于在今天成功建站，举国欢庆，妈的我连字都不会打了。。。
+                    </p>
+                </div>
+            </div>
+            <div class="card mb-3 shadow ">
+                <!--                    <img src="" alt="" th:src="@{/img/test.jpg}"  class="card-img-top img-thumbnail">-->
+                <div class="card-body">
+                    <h4 class="card-title">如约而至 </h4>
+                    <div class="mb-2 ">
+                        <div class="badge badge-info font-weight-lighter ">原创</div>
+                        <div class="badge font-weight-lighter">2023-6-10</div>
+                        <div class="badge font-weight-lighter">我的故事</div>
+                    </div>
+                    <p class="card-text ">
+                        欢迎来到我的博客，博客建站于2023/6/8，欢迎来到我的博客，博客建站于2023/6/8，欢迎来到我的博客，
+                        博客建站于2023/6/8，欢迎来到我的博客，博客建站于2023/6/8，欢迎来到我的博客，博客建站于2023/6/8，欢迎来到我的博客，博客建站于2023/6/8，欢迎来到我的博客，博客建站于2023/6/8，欢迎来到我的博客，博客建站于2023/6/8，构想于2020/9/1，便秘三年，终有分娩，欢迎来到我的博客，博客建站于2023/6/8，
+                        构想于2020/9/1，便秘三年，终有分娩，欢迎来到我的博客，博客建站于2023/6/8，
+                        构想于2020/9/1，便秘三年，终有分娩， 欢迎来到我的博客，博客建站于2023/6/8，
+                        构想于2020/9/1，便秘三年，终有分娩，终于在今天成功建站，举国欢庆，妈的我连字都不会打了。。。
+                    </p>
+                </div>
+            </div>
+            <div class="card mb-3 shadow ">
+                <!--                    <img src="" alt="" th:src="@{/img/test.jpg}"  class="card-img-top img-thumbnail">-->
+                <div class="card-body">
+                    <h4 class="card-title">如约而至 </h4>
+                    <div class="mb-2 ">
+                        <div class="badge badge-info font-weight-lighter ">原创</div>
+                        <div class="badge font-weight-lighter">2023-6-10</div>
+                        <div class="badge font-weight-lighter">我的故事</div>
+                    </div>
+                    <p class="card-text ">
+                        欢迎来到我的博客，博客建站于2023/6/8，欢迎来到我的博客，博客建站于2023/6/8，欢迎来到我的博客，
+                        博客建站于2023/6/8，欢迎来到我的博客，博客建站于2023/6/8，欢迎来到我的博客，博客建站于2023/6/8，欢迎来到我的博客，博客建站于2023/6/8，欢迎来到我的博客，博客建站于2023/6/8，欢迎来到我的博客，博客建站于2023/6/8，构想于2020/9/1，便秘三年，终有分娩，欢迎来到我的博客，博客建站于2023/6/8，
+                        构想于2020/9/1，便秘三年，终有分娩，欢迎来到我的博客，博客建站于2023/6/8，
+                        构想于2020/9/1，便秘三年，终有分娩， 欢迎来到我的博客，博客建站于2023/6/8，
+                        构想于2020/9/1，便秘三年，终有分娩，终于在今天成功建站，举国欢庆，妈的我连字都不会打了。。。
+                    </p>
+                </div>
+            </div>
+            <div class="card mb-3 shadow ">
+                <!--                    <img src="" alt="" th:src="@{/img/test.jpg}"  class="card-img-top img-thumbnail">-->
+                <div class="card-body">
+                    <h4 class="card-title">如约而至 </h4>
+                    <div class="mb-2 ">
+                        <div class="badge badge-info font-weight-lighter ">原创</div>
+                        <div class="badge font-weight-lighter">2023-6-10</div>
+                        <div class="badge font-weight-lighter">我的故事</div>
+                    </div>
+                    <p class="card-text ">
+                        欢迎来到我的博客，博客建站于2023/6/8，欢迎来到我的博客，博客建站于2023/6/8，欢迎来到我的博客，
+                        博客建站于2023/6/8，欢迎来到我的博客，博客建站于2023/6/8，欢迎来到我的博客，博客建站于2023/6/8，欢迎来到我的博客，博客建站于2023/6/8，欢迎来到我的博客，博客建站于2023/6/8，欢迎来到我的博客，博客建站于2023/6/8，构想于2020/9/1，便秘三年，终有分娩，欢迎来到我的博客，博客建站于2023/6/8，
+                        构想于2020/9/1，便秘三年，终有分娩，欢迎来到我的博客，博客建站于2023/6/8，
+                        构想于2020/9/1，便秘三年，终有分娩， 欢迎来到我的博客，博客建站于2023/6/8，
+                        构想于2020/9/1，便秘三年，终有分娩，终于在今天成功建站，举国欢庆，妈的我连字都不会打了。。。
+                    </p>
+                </div>
+            </div>
+            <div class="card mb-3 shadow ">
+                <!--                    <img src="" alt="" th:src="@{/img/test.jpg}"  class="card-img-top img-thumbnail">-->
+                <div class="card-body">
+                    <h4 class="card-title">如约而至 </h4>
+                    <div class="mb-2 ">
+                        <div class="badge badge-info font-weight-lighter ">原创</div>
+                        <div class="badge font-weight-lighter">2023-6-10</div>
+                        <div class="badge font-weight-lighter">我的故事</div>
+                    </div>
+                    <p class="card-text ">
+                        欢迎来到我的博客，博客建站于2023/6/8，欢迎来到我的博客，博客建站于2023/6/8，欢迎来到我的博客，
+                        博客建站于2023/6/8，欢迎来到我的博客，博客建站于2023/6/8，欢迎来到我的博客，博客建站于2023/6/8，欢迎来到我的博客，博客建站于2023/6/8，欢迎来到我的博客，博客建站于2023/6/8，欢迎来到我的博客，博客建站于2023/6/8，构想于2020/9/1，便秘三年，终有分娩，欢迎来到我的博客，博客建站于2023/6/8，
+                        构想于2020/9/1，便秘三年，终有分娩，欢迎来到我的博客，博客建站于2023/6/8，
+                        构想于2020/9/1，便秘三年，终有分娩， 欢迎来到我的博客，博客建站于2023/6/8，
+                        构想于2020/9/1，便秘三年，终有分娩，终于在今天成功建站，举国欢庆，妈的我连字都不会打了。。。
+                    </p>
+                </div>
+            </div>
+
+            <nav aria-label="Page navigation example">
+                <ul class="pagination justify-content-center">
+                    <li class="page-item disabled">
+                        <a class="page-link">Previous</a>
+                    </li>
+                    <li class="page-item active"><a class="page-link " href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item">
+                        <a class="page-link" href="#">Next</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <!--首页右边部分-->
+        <div id="right-cards" class="col-lg-3 order-lg-2 col-md-12  order-2 mt-3 ">
+            <div class="card mt-2 shadow-sm" style="background-color: lightyellow">
+                <div class="card-body">
+                    <i class="fa fa-quote-left fa-1x pull-left "></i>
+                    <h5 class="card-title"></h5>
+                    <br>
+                    <p class="card-text text-center pt-5 pb-5">假如，我是说假如，我六级开启高原血统，那么阁下该怎么应对？</p>
+                    <i class="fa fa-quote-right fa-1x pull-right "></i>
+                </div>
+            </div>
+            <!--<div class="card mt-2 shadow">
+                <div class="card-body">
+                <h5 class="card-title"></h5>
+                <p class="card-text text-center"></p>
+                </div>
+            </div>-->
+            <div id="website_dashMini" class="card mt-2 shadow-sm">
+                <div class="card-body text-left ">
+                    <h6 class="card-title "><i class="fa fa-window-maximize mr-1 text-secondary" aria-hidden="true"></i>网站信息
+                        <button type="button" class="btn  btn-info btn-sm  float-right" data-toggle="modal"
+                                data-target="#exampleModal" style="font-family: al-Light;"><span>反馈</span></button>
+                    </h6>
+                    <hr>
+                    <div class="card-text ">
+                        <p><i class="fa fa-file-text mr-1 text-info" aria-hidden="true"></i>文章总数: <span>5</span></p>
+                        <p><i class="fa fa-filter mr-1 text-primary" aria-hidden="true"></i>文章分类: <span>5</span></p>
+                        <p><i class="fa fa-comments-o mr-1 text-dark" aria-hidden="true"></i>网站评论: <span>10</span></p>
+                        <p><i class="fa fa-heartbeat mr-1 text-danger" aria-hidden="true"></i>网站运行: <span>20年</span></p>
+                        <p><i class="fa fa-cogs mr-1" aria-hidden="true"></i>网站最近更新时间: <span>20年6月</span></p>
+                    </div>
+                </div>
+            </div>
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" data-backdrop="static" data-keyboard="false" tabindex="-1"
+                 aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">反馈信息填写</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            ...
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary">Save changes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+</div>
+
+
 </body>
+<script src="js/jquery-3.3.1.js" th:src="@{/js/jquery-3.5.1.min.js}"></script>
+<script src="js/jquery-3.3.1.js" th:src="@{/js/bootstrap.bundle.min.js}"></script>
+<script>
+    $(function () {
+        var currentPath = window.location.href.substring(0, window.location.href.lastIndexOf("/"));
+        $('#left-cards-gz').popover({//扫码关注
+            html: true,
+            container: "body",
+            content: "<img src=" + currentPath + "/img/touxiang.jpg class='img-fluid'>",
+            placement: "auto"
+        })
+
+        // 给卡片元素绑定点击事件
+        $('#center-cards .card').click(function () {
+            // 跳转到对应的页面
+            window.location.href = '/article';//不新开页面
+            // window.open('/article'); 新标签页面
+        });
+
+        $('#center-cards .card').hover(function () {
+            $(this).addClass('shadow-lg');
+        }, function () {
+            $(this).removeClass('shadow-lg');
+        });
+
+
+        $('nav a').click(function (e) {
+            e.preventDefault();
+            $('#loadingModal').modal('show');
+            setTimeout(function () {
+                $('#loadingModal').modal('hide');
+
+            }, 1000);
+
+            $('#loadingModal').on('hidden.bs.modal', function () {//当hide完成之后触发
+                window.location.href = e.target.href;
+            })
+        });
+
+
+    })
+
+    $('.navbar-nav>li>a').on('click', function () {
+        //折叠状态下，点击完导航之后，自动折叠回来
+        $('.navbar-collapse').collapse('hide');
+    });
+    $('.navbar-collapse').on('show.bs.collapse', function () {
+        //导航折叠展开，图标变为x
+        $('.navbar-toggler-icon').css('background-image',
+            'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'30\' height=\'30\' viewBox=\'0 0 30 30\'%3e%3cpath stroke=\'rgba(0, 0, 0, 0.5)\' stroke-linecap=\'round\' stroke-miterlimit=\'10\' stroke-width=\'2\' d=\'M2 2 L28 28\'/%3e%3cpath stroke=\'rgba(0, 0, 0, 0.5)\' stroke-linecap=\'round\' stroke-miterlimit=\'10\' stroke-width=\'2\' d=\'M2 28 L28 2\'/%3e%3c/svg%3e")')
+
+    });
+    $('.navbar-collapse').on('hide.bs.collapse', function () {
+        //导航折叠关闭，图标变为三
+        $('.navbar-toggler-icon').css('background-image', 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'30\' height=\'30\' viewBox=\'0 0 30 30\'%3e%3cpath stroke=\'rgba%280, 0, 0, 0.5%29\' stroke-linecap=\'round\' stroke-miterlimit=\'10\' stroke-width=\'2\' d=\'M4 7h22M4 15h22M4 23h22\'/%3e%3c/svg%3e")')
+    });
+
+</script>
 </html>
